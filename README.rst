@@ -41,9 +41,8 @@ datasketch must be used with Python 2.7 or above and NumPy 1.11 or
 above. Scipy is optional, but with it the LSH initialization can be much
 faster.
 
-Note that `MinHash LSH`_ also supports a Redis storage layer as well 
-as an experimental module with asynchronous interface to 
-MongoDB.
+Note that `MinHash LSH`_ and `MinHash LSH Ensemble`_ also support Redis and Cassandra 
+storage layer (see `MinHash LSH at Scale`_).
 
 Install
 -------
@@ -52,9 +51,27 @@ To install datasketch using ``pip``:
 
 ::
 
-    pip install datasketch -U
+    pip install datasketch
 
 This will also install NumPy as dependency.
+
+To install with Redis dependency:
+
+::
+
+    pip install datasketch[redis]
+
+To install with Cassandra dependency:
+
+::
+
+    pip install datasketch[cassandra]
+
+To install with Scipy for faster MinHashLSH initialization:
+
+::
+
+    pip install datasketch[scipy]
 
 .. _`MinHash`: https://ekzhu.github.io/datasketch/minhash.html
 .. _`Weighted MinHash`: https://ekzhu.github.io/datasketch/weightedminhash.html
@@ -63,3 +80,4 @@ This will also install NumPy as dependency.
 .. _`MinHash LSH`: https://ekzhu.github.io/datasketch/lsh.html
 .. _`MinHash LSH Forest`: https://ekzhu.github.io/datasketch/lshforest.html
 .. _`MinHash LSH Ensemble`: https://ekzhu.github.io/datasketch/lshensemble.html
+.. _`Minhash LSH at Scale`: http://ekzhu.github.io/datasketch/lsh.html#minhash-lsh-at-scale

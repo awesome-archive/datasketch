@@ -66,10 +66,10 @@
 </ul>
 </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
     </div>
@@ -91,7 +91,7 @@
 search very large amount of data super fast, with little loss of
 accuracy.</p>
 <p>This package contains the following data sketches:</p>
-<table class="docutils align-center">
+<table class="docutils align-default">
 <colgroup>
 <col style="width: 35%" />
 <col style="width: 65%" />
@@ -118,7 +118,7 @@ accuracy.</p>
 </table>
 <p>The following indexes for data sketches are provided to support
 sub-linear query time:</p>
-<table class="docutils align-center">
+<table class="docutils align-default">
 <colgroup>
 <col style="width: 34%" />
 <col style="width: 36%" />
@@ -148,16 +148,27 @@ sub-linear query time:</p>
 <p>datasketch must be used with Python 2.7 or above and NumPy 1.11 or
 above. Scipy is optional, but with it the LSH initialization can be much
 faster.</p>
-<p>Note that <a class="reference external" href="https://ekzhu.github.io/datasketch/lsh.html">MinHash LSH</a> also supports a Redis storage layer as well
-as an experimental module with asynchronous interface to
-MongoDB.</p>
+<p>Note that <a class="reference external" href="https://ekzhu.github.io/datasketch/lsh.html">MinHash LSH</a> and <a class="reference external" href="https://ekzhu.github.io/datasketch/lshensemble.html">MinHash LSH Ensemble</a> also support Redis and Cassandra
+storage layer (see <a class="reference external" href="http://ekzhu.github.io/datasketch/lsh.html#minhash-lsh-at-scale">MinHash LSH at Scale</a>).</p>
 <div class="section" id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
 <p>To install datasketch using <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">datasketch</span> <span class="o">-</span><span class="n">U</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">datasketch</span>
 </pre></div>
 </div>
 <p>This will also install NumPy as dependency.</p>
+<p>To install with Redis dependency:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">datasketch</span><span class="p">[</span><span class="n">redis</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To install with Cassandra dependency:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">datasketch</span><span class="p">[</span><span class="n">cassandra</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>To install with Scipy for faster MinHashLSH initialization:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">datasketch</span><span class="p">[</span><span class="n">scipy</span><span class="p">]</span>
+</pre></div>
+</div>
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -171,10 +182,10 @@ MongoDB.</p>
     <div class="clearer"></div>
   </div>
     <div class="footer">
-      &copy;2019, Eric Zhu.
+      &copy;2020, Eric Zhu.
       
       |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.0.1</a>
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.3.1</a>
       &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
       
       |

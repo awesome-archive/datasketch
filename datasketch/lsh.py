@@ -1,4 +1,6 @@
 import pickle
+import struct
+
 from datasketch.storage import (
     ordered_storage, unordered_storage, _random_name)
 
@@ -107,7 +109,10 @@ class MinHashLSH(object):
         if params is not None:
             self.b, self.r = params
             if self.b * self.r > num_perm:
-                raise ValueError("The product of b and r must be less than num_perm")
+                raise ValueError("The product of b and r in params is "
+                        "{} * {} = {} -- it must be less than num_perm {}. "
+                        "Did you forget to specify num_perm?".format(
+                            self.b, self.r, self.b*self.r, num_perm))
         else:
             false_positive_weight, false_negative_weight = weights
             self.b, self.r = _optimal_param(threshold, num_perm,
@@ -117,7 +122,7 @@ class MinHashLSH(object):
 
         basename = storage_config.get('basename', _random_name(11))
         self.hashtables = [
-            unordered_storage(storage_config, name=b''.join([basename, b'_bucket_', bytes([i])]))
+            unordered_storage(storage_config, name=b''.join([basename, b'_bucket_', struct.pack('>H', i)]))
             for i in range(self.b)]
         self.hashranges = [(i*self.r, (i+1)*self.r) for i in range(self.b)]
         self.keys = ordered_storage(storage_config, name=b''.join([basename, b'_keys']))
